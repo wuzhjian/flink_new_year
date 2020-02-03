@@ -20,7 +20,6 @@ object StreamWordCount {
     // 接受socket数据流
     val textDataStream = env.socketTextStream(host, port)
 
-    import org.apache.flink.api.scala._
     // 逐一读取数据，分词之后进行wordCount
     val wordCountDataStream = textDataStream.flatMap(_.split(" "))
       .filter(_.nonEmpty).startNewChain()
